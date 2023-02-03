@@ -5,10 +5,8 @@
   <h3>趣味：{{ user.hobby }}</h3>
   <h3 v-show="user.sex">性別：{{ user.sex }}</h3>
   <h3 v-show="user.company">会社：{{ user.company }}</h3>
-  <br />
-  <button @click="changeInfo">change name</button><br />
-  <button @click="addGanderAndCompany">add gander</button><br />
-  <button @click="deleteAge">delete age</button>
+  <button @click="changeInfo">change name</button>
+  <button @click="addGanderAndCompany">add gander</button>
 </template>
 
 <script>
