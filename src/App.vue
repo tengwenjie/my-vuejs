@@ -4,8 +4,9 @@
   <h3>仕事：{{ user.job }}</h3>
   <h3>趣味：{{ user.hobby }}</h3>
   <h3 v-show="user.sex">性別：{{ user.sex }}</h3>
+  <h3 v-show="user.company">会社：{{ user.company }}</h3>
   <button @click="changeInfo">change name</button>
-  <button @click="addGander">add gander</button>
+  <button @click="addGanderAndCompany">add gander</button>
 </template>
 
 <script>
@@ -23,13 +24,14 @@ export default {
       user.name = 'David';
       (user.age = 20), (user.job = 'Java Enageer'), (user.hobby = ['vido Game', 'Movie', 'music']);
     }
-    function addGander() {
+    function addGanderAndCompany() {
       user.sex = '男';
+      user.company = 'pactera';
     }
     return {
       user,
       changeInfo,
-      addGander,
+      addGanderAndCompany,
     };
   },
 };
