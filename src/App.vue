@@ -11,14 +11,6 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-// export default {
-//   name: 'App',
-//   components: {
-//     HelloWorld
-//   }
-// }
-
 import { reactive } from 'vue';
 export default {
   name: 'App',
