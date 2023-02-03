@@ -1,6 +1,4 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   <h3>名前：{{ user.name }}</h3>
   <h3>年齢：{{ user.age }}</h3>
   <h3>仕事：{{ user.job }}</h3>
