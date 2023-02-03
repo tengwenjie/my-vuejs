@@ -31,11 +31,13 @@ export default {
     function deleteAge() {
       delete user.age;
     }
+    function tobe() {}
     return {
       user,
       changeInfo,
       addGanderAndCompany,
       deleteAge,
+      tobe,
     };
   },
 };
