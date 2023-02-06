@@ -1,36 +1,71 @@
 <template>
-  <h2>profile</h2>
-  first name:<input type="text" v-model="person.firstName" /><br />
-  last name :<input type="text" v-model="person.lastName" />
+  <h3>{{ sum }}</h3>
+  <button @click="sum++">click+1</button>
   <hr />
-  <h3>{{ person.fullName }}</h3>
-  <input type="text" v-model="person.fullName" />
+  <h3>{{ msg }}</h3>
+  <button @click="msg += '*'">click change message</button>
+  <hr />
+  <h2>Name:{{ person.name }}</h2>
+  <h2>Age:{{ person.age }}</h2>
+  <h2>Salary:{{ person.job.j1.salary }}k</h2>
+  <button @click="person.name += '*'">change name</button>
+  <button @click="person.age++">increment age</button>
+  <button @click="incrementSalary">increment salary</button>
 </template>
 <script>
-import { reactive, computed } from 'vue';
+import { ref, reactive, watch } from 'vue';
 export default {
   name: 'DemoItem',
-  props: ['msg', 'code'],
-  emits: ['hello'],
   setup() {
+    let sum = ref(0);
+    let msg = ref('hello world');
     let person = reactive({
-      firstName: 'Zhang',
-      lastName: 'san',
+      name: 'Zhang San',
+      age: 18,
+      job: {
+        j1: {
+          salary: 20,
+        },
+      },
     });
-    // person.fullName = computed(() => {
-    //   return person.firstName + '-' + person.lastName;
+    function incrementSalary() {
+      person.job.j1.salary++;
+    }
+
+    //watch one data
+    // watch(sum, (newValue, oldValue) => {
+    //   console.log('sum', newValue, oldValue);
     // });
-    person.fullName = computed({
-      get() {
-        return person.firstName + '-' + person.lastName;
+
+    //watcu multi data
+    // watch([sum, msg], (newValue, oldValue) => {
+    //   console.log('sum or msg changed', newValue, oldValue);
+    // });
+
+    //immdediate,deep
+    // watch(
+    //   sum,
+    //   (newValue, oldValue) => {
+    //     console.log('sum has been changed', newValue, oldValue);
+    //   },
+    //   { immediate: true }
+    // );
+
+    //watch object -> can not get correct old value
+    // watch(person, (newValue, oldValue) => {
+    //   console.log('person has been changed', newValue, oldValue);
+    // });
+
+    //watch single data
+    watch(
+      () => person.age,
+      (newValue, oldValue) => {
+        console.log('age has been changed', newValue, oldValue);
       },
-      set(value) {
-        const nameArr = value.split('-');
-        person.firstName = nameArr[0];
-        person.lastName = nameArr[1];
-      },
-    });
-    return { person };
+      { immediate: true }
+    );
+
+    return { sum, msg, person, incrementSalary };
   },
 };
 </script>
