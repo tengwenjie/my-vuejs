@@ -19,7 +19,7 @@
       //     );
       //   };
 
-      document.addEventListener(
+      window.addEventListener(
         'mousewheel',
         (event) => {
           event.preventDefault();
@@ -27,9 +27,11 @@
         { passive: false }
       );
       document.addEventListener(
-        'keydown',
+        'scroll',
         (event) => {
-          event.preventDefault();
+          //   event.preventDefault();
+          console.log(event.preventDefault());
+          window.scroll({ top: 0 });
         },
         { passive: false }
       );
