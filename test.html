@@ -29,9 +29,7 @@
       document.addEventListener(
         'scroll',
         (event) => {
-          //   event.preventDefault();
-          console.log(event.preventDefault());
-          window.scroll({ top: 0 });
+          window.scrollTo(0, 0);
         },
         { passive: false }
       );

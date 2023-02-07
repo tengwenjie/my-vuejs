@@ -1,22 +1,23 @@
 <template>
-  <h3>msg:{{ props.msg }}</h3>
-  <h3>code:{{ props.code }}</h3>
-  <button @click="test">click say</button>
-  <hr />
-  <h3>new msg:<slot name="qwe" /></h3>
+  <h3>name:{{ person.name }}</h3>
+  <h3>age:{{ person.age }}</h3>
+  <button @click="person.name+='*'">name change</button>
+  <button @click="person.age++">age change</button>
 </template>
 <script>
+import { reactive,watch } from 'vue';
 export default {
   name: 'DemoItem',
-  props: ['msg', 'code'],
-  emits: ['hello'],
-  slots: ['qwe'],
-  setup(props, context) {
-    console.log(context.slots);
-    function test() {
-      context.emit('hello');
-    }
-    return { props, test, context };
+  setup() {
+    let person = reactive({
+      name: 'zhang san',
+      age: 18,
+    });
+
+    watch(person,(newValue,oldValue)=>{
+      console.log(newValue,oldValue)
+    })
+    return { person};
   },
 };
 </script>
