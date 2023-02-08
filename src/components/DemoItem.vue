@@ -1,34 +1,43 @@
 <template>
-  first name:<input type="text" v-model="person.firstName"/><br>
-  last name:<input type="text" v-model="person.lastName"/><br>
+  test:<input type="text" v-model="test"/>
+  name:<input type="text" v-model="person.name"/><br>
+  age:<input type="text" v-model="person.age"/><br>
+  salary:<input type="text" v-model="person.job.j1.salary"/><br>
   <hr/>
-  <h3>full name:{{ person.fullName }}</h3>
-  full name:<input type="text" v-model="person.fullName"/>
+
   
 </template>
 <script>
-import { reactive,computed } from 'vue';
+import { reactive,watch,ref } from 'vue';
 export default {
   name: 'DemoItem',
   setup() {
+    let test = ref(0)
     let person = reactive({
-      firstName:'zhang',
-      lastName:'san',
-      fullName:''
+      name:'zhang',
+      age:18,
+      job:{
+        j1:{
+          salary:0
+        }
+      }
     });
     
-    person.fullName = computed({
-      get(){
-        return person.firstName +" "+ person.lastName
-      },
-      set(value){
-        const nameArr= value.split(' ')
-        person.firstName = nameArr[0]
-        person.lastName=nameArr[1]
-      },
+    watch(test,(newValue,oldValue)=>{
+      console.log(newValue,oldValue)
     })
 
-    return { person};
+    watch(person,(newValue,oldValue)=>{
+      console.log(newValue,oldValue)
+    },{immediate:true})
+
+      // watch(()=>person.name,(newValue,oldValue)=>{
+      //   console.log(newValue,oldValue)
+      // })
+
+      // watch(()=>person)
+
+    return { person,test};
   },
 };
 </script>
