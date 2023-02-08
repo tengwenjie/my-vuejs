@@ -18,7 +18,7 @@ export default {
     //   console.log(newValue,oldValue)
     // })
 
-    watch(()=>person.name,(newValue,oldValue)=>{
+    watch(person,(newValue,oldValue)=>{
       console.log(newValue,oldValue)
     })
     return { person};
