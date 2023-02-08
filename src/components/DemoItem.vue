@@ -1,26 +1,33 @@
 <template>
-  <input type="text" v-model="person.name"/>
-  <h3>age:{{ person.age }}</h3>
-  <button @click="person.name+='*'">name change</button>
-  <button @click="person.age++">age change</button>
+  first name:<input type="text" v-model="person.firstName"/><br>
+  last name:<input type="text" v-model="person.lastName"/><br>
+  <hr/>
+  <h3>full name:{{ person.fullName }}</h3>
+  full name:<input type="text" v-model="person.fullName"/>
+  
 </template>
 <script>
-import { reactive,watch } from 'vue';
+import { reactive,computed } from 'vue';
 export default {
   name: 'DemoItem',
   setup() {
     let person = reactive({
-      name: 'zhang san',
-      age: 18,
+      firstName:'zhang',
+      lastName:'san',
+      fullName:''
     });
-
-    // watch(person,(newValue,oldValue)=>{
-    //   console.log(newValue,oldValue)
-    // })
-
-    watch(person,(newValue,oldValue)=>{
-      console.log(newValue,oldValue)
+    
+    person.fullName = computed({
+      get(){
+        return person.firstName +" "+ person.lastName
+      },
+      set(value){
+        const nameArr= value.split(' ')
+        person.firstName = nameArr[0]
+        person.lastName=nameArr[1]
+      },
     })
+
     return { person};
   },
 };
