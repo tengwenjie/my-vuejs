@@ -1,5 +1,5 @@
 <template>
-  <h3>name:{{ person.name }}</h3>
+  <input type="text" v-model="person.name"/>
   <h3>age:{{ person.age }}</h3>
   <button @click="person.name+='*'">name change</button>
   <button @click="person.age++">age change</button>
@@ -14,7 +14,11 @@ export default {
       age: 18,
     });
 
-    watch(person,(newValue,oldValue)=>{
+    // watch(person,(newValue,oldValue)=>{
+    //   console.log(newValue,oldValue)
+    // })
+
+    watch(()=>person.name,(newValue,oldValue)=>{
       console.log(newValue,oldValue)
     })
     return { person};
