@@ -1,17 +1,20 @@
 <template>
   <button @click="showDemoItem = !showDemoItem">show or close</button>
-  <DemoItem v-if="showDemoItem"/>
+  <DemoItem v-if="showDemoItem" />
+  <hr />
+  <TestItem />
 </template>
 
 <script>
 import DemoItem from './components/DemoItem';
-import {ref} from 'vue'
+import TestItem from './components/TestItem';
+import { ref } from 'vue';
 export default {
   name: 'App',
-  components: {DemoItem},
-  setup(){
-    let showDemoItem=ref(true)
-    return {showDemoItem}
-  }
+  components: { DemoItem, TestItem },
+  setup() {
+    let showDemoItem = ref(true);
+    return { showDemoItem };
+  },
 };
 </script>
