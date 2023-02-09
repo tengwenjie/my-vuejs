@@ -5,11 +5,14 @@
   <button @click="name += '~'">name+</button>
   <button @click="age++">age+</button>
   <button @click="job.j1.salary++">salary+</button>
-  <hr />
   <h3>{{ person }}</h3>
+  <hr />
+  <h3>{{ x.c }}</h3>
+  <button @click="x = { c: 1234 }">click exchange</button>
+  <button @click="x.y++">click ++</button>
 </template>
 <script>
-import { reactive, toRefs } from 'vue';
+import { toRefs, reactive, shallowRef } from 'vue';
 export default {
   name: 'DemoItem',
   setup() {
@@ -22,7 +25,11 @@ export default {
         },
       },
     });
-    return { ...toRefs(person), person };
+
+    const x = shallowRef({ c: 1111 });
+    console.log(x);
+
+    return { ...toRefs(person), person, x };
   },
 };
 </script>
