@@ -5,18 +5,17 @@
   <button @click="name += '~'">name+</button>
   <button @click="age++">age+</button>
   <button @click="job.j1.salary++">salary+</button>
-  <h3>{{ person }}</h3>
   <hr />
-  <h3>{{ x.c }}</h3>
-  <button @click="x = { c: 1234 }">click exchange</button>
-  <button @click="x.y++">click ++</button>
+  <h3>{{ sum }}</h3>
+  <button @click="sum++">click ++</button>
 </template>
 <script>
-import { toRefs, reactive, shallowRef } from 'vue';
+import { toRefs, reactive, ref, shallowReadonly, readonly } from 'vue';
 export default {
   name: 'DemoItem',
   setup() {
-    const person = reactive({
+    let sum = ref(0);
+    let person = reactive({
       name: 'Zhang San',
       age: 18,
       job: {
@@ -26,10 +25,10 @@ export default {
       },
     });
 
-    const x = shallowRef({ c: 1111 });
-    console.log(x);
+    person = shallowReadonly(person);
+    sum = readonly(sum);
 
-    return { ...toRefs(person), person, x };
+    return { ...toRefs(person), sum };
   },
 };
 </script>
