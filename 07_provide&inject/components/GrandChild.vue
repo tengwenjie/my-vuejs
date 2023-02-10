@@ -1,16 +1,16 @@
-<template>
-  <div class="component3">
-    <h3>component</h3>
+<template lang="">
+  <div class="grandChild">
+    <h3>Grand Child Component</h3>
     <h3>car name:{{ name }}</h3>
     <h3>car price:{{ price }}</h3>
-    <input type="text" v-model="name" />
-    <input type="text" v-model="price" />
+    <label>name:<input type="text" v-model="name" /></label><br />
+    <label>price:<input type="text" v-model="price" /></label>
   </div>
 </template>
 <script>
 import { inject, toRefs } from 'vue';
 export default {
-  name: 'component3Item',
+  name: 'GrandChild',
   setup() {
     let car = inject('car');
     return { ...toRefs(car) };
@@ -18,8 +18,8 @@ export default {
 };
 </script>
 <style>
-.component3 {
-  background-color: cornflowerblue;
+.grandChild {
+  background-color: blueviolet;
   padding: 10px;
 }
 </style>
