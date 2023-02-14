@@ -54,7 +54,7 @@ export default {
 
     watch(count, (next) => {
       if (next > 999) {
-        // count.value = 999;
+        count.value = 999;
         validationMessage.value.push('999以上は入力できません');
       } else if (next < 0) {
         count.value = 0;
